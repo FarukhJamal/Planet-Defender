@@ -1,18 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class IFireball : MonoBehaviour
+public interface IFireball
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    Rigidbody Body { get; }
+    void Init(Vector3 start, Vector3 target);
+    void Nullify();
 }

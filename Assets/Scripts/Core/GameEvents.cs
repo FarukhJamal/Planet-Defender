@@ -1,18 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using System;
 
-public class GameEvents : MonoBehaviour
+public static class GameEvents
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public static event Action<int> OnScoreChanged; // total score
+    public static event Action OnFireballHitEarth;
+    public static event Action OnFireballNullified; // for VFX/audio
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public static void RaiseScoreChanged(int total) => OnScoreChanged?.Invoke(total);
+    public static void RaiseFireballHitEarth() => OnFireballHitEarth?.Invoke();
+    public static void RaiseFireballNullified() => OnFireballNullified?.Invoke();
 }

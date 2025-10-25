@@ -1,18 +1,31 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseFireball : MonoBehaviour
+[RequireComponent(typeof(Rigidbody), typeof(SphereCollider))]
+public abstract class BaseFireball : MonoBehaviour, IFireball
 {
-    // Start is called before the first frame update
-    void Start()
+    public Rigidbody Body { get; private set; }
+    protected bool _alive = true;
+
+    protected virtual void Awake()
     {
-        
+        Body = GetComponent<Rigidbody>();
+        var col = GetComponent<SphereCollider>();
+        col.material = new PhysicMaterial { bounciness = 0.6f, bounceCombine = PhysicMaterialCombine.Maximum };
+        col.isTrigger = false;
+        gameObject.tag = "Fireball";
     }
 
-    // Update is called once per frame
-    void Update()
+    public virtual void Init(Vector3 start, Vector3 target)
     {
-        
+        transform.position = start;
+        Vector3 dir = (target - start).normalized;
+        Body.velocity = dir * Random.Range(6f, 10f);
+    }
+
+    public virtual void Nullify()
+    {
+        if (!_alive) return; _alive = false;
+        GameEvents.RaiseFireballNullified();
+        Destroy(gameObject);
     }
 }

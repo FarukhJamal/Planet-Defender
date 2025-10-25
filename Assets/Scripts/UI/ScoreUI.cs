@@ -1,18 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class ScoreUI : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public TMP_Text scoreText;
 
-    // Update is called once per frame
-    void Update()
+    void OnEnable() => GameEvents.OnScoreChanged += UpdateScore;
+    void OnDisable() => GameEvents.OnScoreChanged -= UpdateScore;
+
+    void Start() => UpdateScore(ScoreService.Instance != null ? ScoreService.Instance.Score : 0);
+
+    void UpdateScore(int total)
     {
-        
+        if (scoreText) scoreText.text = $"Score: {total}";
     }
 }

@@ -1,18 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class IInputReader : MonoBehaviour
+public interface IInputReader
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    // Returns desired lateral input [-1,1] along local tangent
+    float GetTurn();
 }

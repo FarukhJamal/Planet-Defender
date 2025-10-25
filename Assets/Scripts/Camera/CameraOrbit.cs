@@ -1,18 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraOrbit : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Transform target; // Earth
+    public float distance = 25f;
+    public float orbitSpeed = 30f; // degrees/sec auto-orbit for parallax
+    public Vector3 offset = Vector3.up * 5f; // slight tilt
 
-    // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
-        
+        if (!target) return;
+        transform.RotateAround(target.position, Vector3.up, orbitSpeed * Time.deltaTime);
+        transform.position = (transform.position - target.position).normalized * distance + target.position + offset;
+        transform.LookAt(target.position);
     }
 }

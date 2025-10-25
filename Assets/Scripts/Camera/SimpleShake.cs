@@ -1,18 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SimpleShake : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    Vector3 _basePos; float _time; float _duration; float _intensity;
+
+    void Awake() => _basePos = transform.localPosition;
+
+    void OnEnable() => GameEvents.OnFireballHitEarth += Shake;
+    void OnDisable() => GameEvents.OnFireballHitEarth -= Shake;
+
+    void Shake()
     {
-        
+        _duration = 0.4f; _intensity = 0.25f; _time = _duration;
     }
 
-    // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
-        
+        if (_time <= 0f) { transform.localPosition = _basePos; return; }
+        _time -= Time.deltaTime;
+        transform.localPosition = _basePos + Random.insideUnitSphere * _intensity;
     }
 }
