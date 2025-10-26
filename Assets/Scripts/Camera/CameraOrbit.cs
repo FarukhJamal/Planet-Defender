@@ -2,16 +2,24 @@ using UnityEngine;
 
 public class CameraOrbit : MonoBehaviour
 {
-    public Transform target; // Earth
-    public float distance = 25f;
-    public float orbitSpeed = 30f; // degrees/sec auto-orbit for parallax
-    public Vector3 offset = Vector3.up * 5f; // slight tilt
+    [Header("Follow Target")]
+    public Transform target;
+    public Vector3 offset = new Vector3(0, 15f, -5f);
+    public float followSpeed = 5f;
+    public float lookDownAngle = 60f; // tilt angle
 
-    void LateUpdate()
+    private void LateUpdate()
     {
         if (!target) return;
-        transform.RotateAround(target.position, Vector3.up, orbitSpeed * Time.deltaTime);
-        transform.position = (transform.position - target.position).normalized * distance + target.position + offset;
-        transform.LookAt(target.position);
+
+        // Desired camera position
+        Vector3 desiredPos = target.position + offset;
+
+        // Smooth follow
+        transform.position = Vector3.Lerp(transform.position, desiredPos, followSpeed * Time.deltaTime);
+
+        // Always look at the target with a top-down tilt
+        Quaternion lookRot = Quaternion.Euler(lookDownAngle, 0f, 0f);
+        transform.rotation = lookRot;
     }
 }

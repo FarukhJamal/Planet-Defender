@@ -44,7 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20a0fa5663c59fa4eae34c62095a1bde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireballPrefab: {fileID: 694929071400167497, guid: cfbeff6f1f92a834aaeddce9e346f12c, type: 3}
   earth: {fileID: 0}
-  radius: 40
-  interval: 1.5
+  fireballPrefab: {fileID: 8379321890293511657, guid: cfbeff6f1f92a834aaeddce9e346f12c, type: 3}
+  poolSize: 30
+  spawnInterval: 2
+  spawnDistance: 20

@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 1436334881689649536}
   - component: {fileID: -2238801082317332039}
   - component: {fileID: 4410409346917975392}
-  - component: {fileID: 8049650806209863789}
   m_Layer: 0
   m_Name: SnakeHead
   m_TagString: SnakeHead
@@ -113,13 +112,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   earth: {fileID: 0}
-  orbitRadius: 10
-  moveSpeed: 25
-  turnSpeed: 120
+  inputProvider: {fileID: 0}
   segmentPrefab: {fileID: 1341036621299242356, guid: b5b74cbf66d7d8047944d890059d6873, type: 3}
+  orbitRadius: 10
+  moveSpeed: 8
+  turnSpeed: 120
+  hoverHeight: 5
   initialSegments: 10
   segmentSpacing: 0.6
-  inputProvider: {fileID: -2238801082317332039}
 --- !u!54 &4410409346917975392
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -131,20 +131,8 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &8049650806209863789
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1436334881689649537}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af7c1b21d95df524a95c6668cb612800, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

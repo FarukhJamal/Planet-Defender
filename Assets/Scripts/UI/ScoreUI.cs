@@ -12,6 +12,6 @@ public class ScoreUI : MonoBehaviour
 
     void UpdateScore(int total)
     {
-        if (scoreText) scoreText.text = $"Score: {total}";
+        if (scoreText) scoreText.text = $" {total}";
     }
 }
